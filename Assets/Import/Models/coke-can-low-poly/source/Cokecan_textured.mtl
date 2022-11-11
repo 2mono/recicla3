@@ -1,0 +1,40 @@
+# Wavefront .mtl file  -  created by SpaceDraw
+
+# File created: 19-12-10, 20:09
+
+newmtl sidemate
+Ns 8.6
+d 1.0
+Tr 0.0
+illum 2
+Ka 1.0 1.0 1.0 
+Kd 1.0 1.0 1.0 
+Ks 0.8745 0.8745 0.8745 
+Ke 0.0 0.0 0.0 
+map_Ka Coca_Cola_texture.png
+map_Kd Coca_Cola_texture.png
+
+newmtl bottommate
+Ns 5.0
+d 1.0
+Tr 0.0
+illum 2
+Ka 0.7294 0.7294 0.7294 
+Kd 0.7294 0.7294 0.7294 
+Ks 1.0 1.0 1.0 
+Ke 0.0 0.0 0.0 
+map_Ka Coca_Cola_Bottom_Texture.png
+map_Kd Coca_Cola_Bottom_Texture.png
+
+newmtl topmatw
+Ns 0.0
+d 1.0
+Tr 0.0
+illum 2
+Ka 1.0 1.0 1.0 
+Kd 1.0 1.0 1.0 
+Ks 1.0 1.0 1.0 
+Ke 0.0 0.0 0.0 
+map_Ka Coca Cola_Top_viewtexture.png
+map_Kd Coca Cola_Top_viewtexture.png
+
