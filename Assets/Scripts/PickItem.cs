@@ -18,8 +18,9 @@ public class PickItem : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0)&& inRange)
         {
-            //TODO
+            
             GameManager.Instance.CountItem();
+            PlayerAnimator.Instance.PickAnim();
             Destroy(gameObject,0.1f);
         }
     }
@@ -28,6 +29,7 @@ public class PickItem : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            other.transform.LookAt(transform.position);
             inRange = true; 
             lit.enabled = true;
         }

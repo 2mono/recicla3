@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     int itemType;
     int itemCount;
     GameObject player;
+    bool winGame = false;
 
 
     private void Awake()
@@ -25,16 +26,56 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        StartGame();
+    }
+
+    private void Update()
+    {
+        WinGame();
+    }
+
+    public async void MessageUI(string message)
+    {
+        messageUI.text = message;
+        messageUI.gameObject.SetActive(true);
+        await Task.Delay(5000);
+        messageUI.gameObject.SetActive(false);
+    }
+
+    public void GameType(int gameType)
+    {
+        switch (gameType)
+        {
+            //TODO
+            case 0:
+                //Latas
+                break;
+        }
+    }
+
+    public async void WinGame()
+    {
+        if (itemCount == 5)
+        {
+            winGame = true;
+            MessageUI("Pasaste al siguiente nivel!");
+            await Task.Delay(3000);
+            //TODO
+
+        }
+    }
+
+    public void StartGame()
+    {
         messageUI.gameObject.SetActive(false);
         player = GameObject.Find("Recolectora");
         itemCount = 0;
 
-        itemType = Random.Range(0,2);
+        itemType = Random.Range(0, 2);
         switch (itemType)
         {
             case 0:
                 MessageUI("Debes juntar 5 latas en menos de 2 minutos!");
-
                 GameType(itemType);
                 break;
             case 1:
@@ -50,44 +91,22 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    public async void MessageUI(string message)
-    {
-        messageUI.text = message;
-        messageUI.gameObject.SetActive(true);
-        await Task.Delay(5000);
-        messageUI.gameObject.SetActive(false);
-    }
-
-    public void GameType(int gameType)
-    {
-        switch (gameType)
-        {
-            case 0:
-            default:
-                break;
-        }
-    }
-
     public async void EndGame()
     {
         //TODO
-
         player.GetComponent<NavMeshAgent>().enabled = false;
         player.GetComponent<Animator>().SetTrigger("EndGame");
         
         MessageUI("Fin del Juego :(");
         await Task.Delay(6000);
         SceneManager.LoadScene("main");
+        winGame = false;
     }
 
-    public async void CountItem()
+    public void CountItem()
     {
         itemCount++;
         items.text = itemCount.ToString() + "/5";
-        player.GetComponent<PlayerMovement>().enabled = false;
-        player.GetComponent<Animator>().SetTrigger("Pickup");
-        await Task.Delay(1500);
-        player.GetComponent<PlayerMovement>().enabled = true;
     }
 
 

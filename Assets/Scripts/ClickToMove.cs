@@ -6,12 +6,11 @@ public class ClickToMove : MonoBehaviour
 {
     RaycastHit hitInfo = new RaycastHit();
     NavMeshAgent agent;
-    Animator anim;
+
 
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        anim = GetComponent<Animator>();
     }
     void Update()
     {
@@ -20,6 +19,7 @@ public class ClickToMove : MonoBehaviour
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray.origin, ray.direction, out hitInfo))
                 agent.destination = hitInfo.point;
+
         }
     }
 }
