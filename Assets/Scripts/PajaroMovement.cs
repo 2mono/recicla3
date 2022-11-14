@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Unity.Burst.CompilerServices;
 using UnityEngine;
 
@@ -7,10 +8,12 @@ public class PajaroMovement : MonoBehaviour
 {
     private float speed;
     public GameObject prefab;
+    AudioSource audioSource;
 
     private void Start()
     {
         speed = Random.Range(3, 10);
+        audioSource = GetComponent<AudioSource>();
     }
     void Update()
     {
@@ -27,6 +30,18 @@ public class PajaroMovement : MonoBehaviour
                 Debug.Log("Le pegue!");
                 Instantiate(prefab,transform.position, transform.rotation);
             }
+        }
+
+        SeagullSound();
+    }
+
+    async void SeagullSound()
+    {
+        if (!audioSource.isPlaying) 
+        { 
+            audioSource.Play();
+            await Task.Delay(6000);
+            audioSource.Stop();
         }
     }
 
