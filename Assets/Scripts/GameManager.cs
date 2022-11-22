@@ -13,10 +13,14 @@ public class GameManager : MonoBehaviour
     
     public Text messageUI;
     public Text items;
+    public GameObject messagesGO;
     int itemType;
     int itemCount;
     GameObject player;
     bool winGame = false;
+
+    public bool inQuestNene = false;
+    public bool inQuestNeneFinished = false;
 
 
     private void Awake()
@@ -26,6 +30,8 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        messagesGO.SetActive(false);
+
         StartGame();
     }
 
@@ -34,12 +40,16 @@ public class GameManager : MonoBehaviour
         WinGame();
     }
 
+
+
     public async void MessageUI(string message)
     {
+        messagesGO.SetActive(true);
         messageUI.text = message;
         messageUI.gameObject.SetActive(true);
         await Task.Delay(5000);
         messageUI.gameObject.SetActive(false);
+        messagesGO.SetActive(false);
     }
 
     public void GameType(int gameType)
@@ -64,6 +74,8 @@ public class GameManager : MonoBehaviour
 
         }
     }
+
+
 
     public void StartGame()
     {

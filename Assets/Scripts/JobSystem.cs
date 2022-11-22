@@ -1,15 +1,11 @@
-using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
 using Unity.Jobs;
 using UnityEngine;
 using Unity.Collections;
-using Unity.Collections.LowLevel.Unsafe;
-using System.Runtime.CompilerServices;
-using Newtonsoft.Json.Linq;
 using Unity.Burst;
 using UnityEngine.Jobs;
-using System;
+
 
 
 public class JobSystem : MonoBehaviour
@@ -37,11 +33,8 @@ public class JobSystem : MonoBehaviour
             prefabList.Add(new Prefab
             {
                 transform = prefabTransform,
-                //moveY = UnityEngine.Random.Range(1f, 2f)
             });
         }
-
-
     }
 
     void Update()

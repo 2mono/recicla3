@@ -4,5 +4,17 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/menu.unity
+    guid: 53fa76bf3cf9d654dab7e6e73868b2bf
+  - enabled: 1
+    path: Assets/Scenes/main.unity
+    guid: 0805574ffcf0352449df78ef95c9e3f5
+  - enabled: 1
+    path: Assets/Scenes/fps_game.unity
+    guid: 7001b39c5878fd442be7d11fcc2e5085
+  - enabled: 1
+    path: Assets/Scenes/submarine_game.unity
+    guid: 5cbfe66f5ee3416449826f3533d7c4fd
   m_configObjects: {}

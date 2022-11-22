@@ -1,12 +1,12 @@
+using Unity.Services.Analytics.Internal;
 using UnityEngine;
+using UnityEngine.AI;
+
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float moveSpeed;
     [SerializeField] private float walkSpeed;
     [SerializeField] private float runSpeed;
-
-    private Vector3 moveDirection;
-    private Vector3 velocity;
 
     [SerializeField] private bool isGrounded;
     [SerializeField] private float groundCheckDistance;
@@ -16,18 +16,30 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private float jumpHeight;
 
+    [Header("Sounds")]
+    [SerializeField] private AudioClip footsteps;
+    AudioSource audioSource;
+    public bool isMoving;
+    private Vector3 moveDirection;
+    private Vector3 velocity;
+
     private CharacterController controller;
     private Animator anim;
 
     private void Start()
     {
         controller = GetComponent<CharacterController>();
-        anim = GetComponentInChildren<Animator>();
+        anim = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Update()
     {
         Move();
+
+
+        if (!audioSource.isPlaying) audioSource.PlayOneShot(footsteps, 0.1f);
+        if (!isMoving) audioSource.Stop();
     }
     private void Move()
     {
@@ -80,13 +92,15 @@ public class PlayerMovement : MonoBehaviour
     private void Walk()
     {
         moveSpeed = walkSpeed;
-        anim.SetFloat("Speed", 0.5f, 0.1f, Time.deltaTime);
+        anim.SetFloat("Speed", 1f, 0.1f, Time.deltaTime);
+        if (!audioSource.isPlaying) audioSource.PlayOneShot(footsteps, 0.1f);
+        if (!isMoving) audioSource.Stop();
     }
 
     private void Run()
     {
         moveSpeed = runSpeed;
-        anim.SetFloat("Speed", 1,0.1f,Time.deltaTime);
+        anim.SetFloat("Speed", 2f,0.1f,Time.deltaTime);
     }
 
     private void Jump()

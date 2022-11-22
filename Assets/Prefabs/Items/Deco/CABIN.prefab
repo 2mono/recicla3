@@ -120,6 +120,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -0
       objectReference: {fileID: 0}
+    - target: {fileID: 6137307045058813008, guid: d99f84c2da8207c47a70a2c88207e3fb, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: addd401d2b5db1b43987448794e35e55, type: 2}
     - target: {fileID: 6137307046589449000, guid: d99f84c2da8207c47a70a2c88207e3fb, type: 3}
       propertyPath: m_Name
       value: Bandera
