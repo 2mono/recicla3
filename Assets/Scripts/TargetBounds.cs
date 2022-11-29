@@ -1,33 +1,45 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class TargetBounds : MonoBehaviour
 {
     [SerializeField] BoxCollider col;
-    [SerializeField] GameObject prefab;
-    [SerializeField] private int prefabCount;
-    private List<Prefab> prefabList;
+
+    [SerializeField] Text targetCountText;
+    [SerializeField] GameObject messageGO;
+    [SerializeField] Text messageUI;
+    public int targetCount;
+
+    
     public static TargetBounds Instance;
-    public bool spawnerOn = false;
-
-
-    public class Prefab
-    {
-        public Vector3 transform;
-        public float moveY;
-    }
 
     private void Awake()
     {
         Instance = this;
     }
 
-    private void Update()
+    private void Start()
     {
-        if (spawnerOn) 
-            Invoke("PrefabInstantiate",2f);
-        
+        messageGO.SetActive(false);
+
+        Invoke("StartGame", 2f);
+    }
+
+    void StartGame()
+    {
+        MessageUI("Derriba todos los objetivos que puedas en 2 Minutos!");
+        Timer.Instance.timerOn = true;
+    }
+
+    public async void EndGameFPS()
+    {
+        AudioManager.instance.PlayGameOver();
+        MessageUI("Derribaste " + targetCount + " objetivos! Buen trabajo!");
+        await Task.Delay(5000);
+        SceneManager.LoadScene("main");
     }
 
     public Vector3 GetRandomPosition()
@@ -52,9 +64,21 @@ public class TargetBounds : MonoBehaviour
         return randomPosition;
     }
 
-    public void PrefabInstantiate()
+    public async void MessageUI(string message)
     {
-        var prefabPosition = GetRandomPosition();
-        Instantiate(prefab, prefabPosition, Quaternion.identity);
+        messageGO.SetActive(true);
+        messageUI.text = message;
+        messageGO.SetActive(true);
+        await Task.Delay(5000);
+        messageGO.SetActive(false);
+//      messageUI.enabled = false;
     }
+
+    public void TargetCount()
+    {
+        targetCount++;
+        targetCountText.text = targetCount.ToString();
+    }
+
+
 }

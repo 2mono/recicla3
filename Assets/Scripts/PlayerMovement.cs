@@ -93,7 +93,7 @@ public class PlayerMovement : MonoBehaviour
     {
         moveSpeed = walkSpeed;
         anim.SetFloat("Speed", 1f, 0.1f, Time.deltaTime);
-        if (!audioSource.isPlaying) audioSource.PlayOneShot(footsteps, 0.1f);
+        if (!audioSource.isPlaying) audioSource.PlayOneShot(footsteps, 0.6f);
         if (!isMoving) audioSource.Stop();
     }
 

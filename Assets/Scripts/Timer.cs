@@ -1,20 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Timer : MonoBehaviour
 {
+    public static Timer Instance { get; private set; }
+
     public float timeLeft;
     public bool timerOn = false;
     
 
     public Text text;
-    void Start()
-    {
-        timerOn = true;
-    }
 
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     void Update()
     {
@@ -30,7 +33,9 @@ public class Timer : MonoBehaviour
                 Debug.Log("Listo!");
                 timeLeft = 0;
                 timerOn = false;
-                GameManager.Instance.EndGame();
+                
+                if (SceneManager.GetActiveScene().name == "main") GameManager.Instance.EndGameRecollect();
+                if (SceneManager.GetActiveScene().name == "fps_game") TargetBounds.Instance.EndGameFPS();
             }
         }
     }

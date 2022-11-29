@@ -7,8 +7,9 @@ using UnityEngine.AI;
 public class QuestNene : MonoBehaviour
 {
     [SerializeField] private GameObject flecha;
+    [SerializeField] private AudioClip enterZone;
     GameObject player;
-    private GameObject character;
+    //private GameObject character;
     Animator anim;
 
     float moveSpeed = 3.0f;
@@ -17,23 +18,22 @@ public class QuestNene : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
         anim = GetComponent<Animator>();
-        character = GetComponent<GameObject>();
+        
     }
 
     private void Update()
     {
         if (GameManager.Instance.inQuestNene)
         {
-            float speed = moveSpeed;
-            anim.SetFloat("Speed", speed, 0.1f, Time.deltaTime);
-            //code for looking to player
-            character.transform.rotation = Quaternion.Slerp(character.transform.rotation,
-            Quaternion.LookRotation(player.transform.position - character.transform.position), 3 * Time.deltaTime);
-
-            //code for following the player
-            character.transform.position += character.transform.forward * moveSpeed * Time.deltaTime;
+            
+           transform.rotation = Quaternion.Slerp(transform.rotation,
+            Quaternion.LookRotation(player.transform.position - transform.position), 3 * Time.deltaTime);
+            
+            
+            transform.position += transform.forward * moveSpeed * Time.deltaTime;
+            anim.SetFloat("Speed", 1f);
         }
-        if (GameManager.Instance.inQuestNeneFinished)  character.transform.position = transform.position;
+        if (GameManager.Instance.inQuestNeneFinished)  transform.position = transform.position;
 
         
         
@@ -43,6 +43,7 @@ public class QuestNene : MonoBehaviour
     {
         if (other.CompareTag("Player") && !GameManager.Instance.inQuestNene)
         {
+            AudioSource.PlayClipAtPoint(enterZone, transform.position);
             GameManager.Instance.inQuestNene = true;
             GameManager.Instance.MessageUI("Ayudame a encontrar a mi Mama!");
             flecha.SetActive(false);
