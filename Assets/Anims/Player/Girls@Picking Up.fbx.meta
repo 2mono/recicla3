@@ -39,7 +39,7 @@ ModelImporter:
       name: Picking Up
       takeName: mixamo.com
       internalID: 0
-      firstFrame: 13
+      firstFrame: 0
       lastFrame: 287
       wrapMode: 0
       orientationOffsetY: 0
@@ -51,7 +51,7 @@ ModelImporter:
       loopBlend: 1
       loopBlendOrientation: 1
       loopBlendPositionY: 1
-      loopBlendPositionXZ: 0
+      loopBlendPositionXZ: 1
       keepOriginalOrientation: 1
       keepOriginalPositionY: 0
       keepOriginalPositionXZ: 1

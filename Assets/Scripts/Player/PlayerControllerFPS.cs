@@ -1,20 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class PlayerControllerFPS : MonoBehaviour
-{
-
-    [SerializeField] Transform cameraHolder;
-    float verticalLookRotation;
-
-    private void Update()
-    {
-        transform.Rotate(Vector3.up * Input.GetAxisRaw("Mouse X"));
-        
-        verticalLookRotation -= Input.GetAxisRaw("Mouse Y");
-        verticalLookRotation = Mathf.Clamp(verticalLookRotation, -90, 90f);
-        cameraHolder.localEulerAngles = new Vector3(verticalLookRotation, 0, 0);
-    }
-
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:d7202ff7c61c58d1b2bf5e4125069863f7318644758bc516ad60b7227c485ca2
+size 566

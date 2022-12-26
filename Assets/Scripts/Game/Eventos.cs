@@ -1,29 +1,3 @@
-using UnityEngine;
-using System;
-using UnityEngine.Events;
-
-public class Eventos : MonoBehaviour
-{
-    
-    public static event Action goodBoyBadgeEvent;
-    public static event Action recollectBadgeEvent;
-    public static event Action shootBadgeEvent;
-
-
-    private void Update()
-    {
-        if (GameManager.Instance.winGame00)
-        {
-            recollectBadgeEvent?.Invoke();
-        }
-        if (GameManager.Instance.winGame01)
-        {
-            goodBoyBadgeEvent?.Invoke();
-        }
-        if (GameManager.Instance.winGame02)
-        {
-            shootBadgeEvent?.Invoke();
-        }
-    }
-
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:2a503e0e4c576cfc9d883c9b3dd1539a4c0e3b777a63b4a2c43dd64505804381
+size 641
